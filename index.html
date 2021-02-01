@@ -1,67 +1,108 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <title>Color Game</title>
-    <link rel="stylesheet" href="./index.css" />
-  </head>
-  <body onload="newGame()">
-    <div id="header">
-      <h2>The Great</h2>
-      <h1 id="header-clue">rgb(xxx,xxx,xxx)</h1>
-      <h2>Guessing Game</h2>
+
+<head>
+  <title>Color Game</title>
+  <link rel="stylesheet" href="./index.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet" />
+  <script src="./main.js"></script>
+</head>
+
+<body onload="game.init();game.link();">
+  <div class="dialog" id="dialog">
+    <span id="diamsg">Try to guess the Colour as Fast as Possible!</span><br/>
+    <a href='#' id='button' onclick="game.start();">Start</a>
+  </div>
+  <div class="blurred" id="blur">
+    
+  </div>
+  <div class='nav'>
+    <div class="heading">
+      <span class="h-1">The Great</span>
+      <span class="h-rgb">
+        <span class="h-r">R</span>
+        <span class="h-g">G</span>
+        <span class="h-b">B</span></span>
+      <span class="h-3">Guessing Game</span>
     </div>
-    <div id="container">
-      <div class="tile" id="1"></div>
-      <div class="tile" id="2"></div>
+    <div>
+      - by dev.club IIT Delhi
     </div>
+  </div>
 
-    <script>
-      var t1 = document.getElementById("1");
-      var t2 = document.getElementById("2");
-      var x;
-      var correctColor;
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="board">
+          <div id="time">
+            <div class="val" id='timeval'>50.0</div>
+            <div class="name">Time</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="board">
+          <div id="time">
+            <div class="val" id=roundsval>1/10</div>
+            <div class="name">Round</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="board">
+          <div id="time">
+            <div class="val" id='scoreval'>0</div>
+            <div class="name">Score</div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="board">
+          <div id="time">
+            <div class="val" id='triesval'>0</div>
+            <div class="name" >Tries</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="ques">
+        <h2>What Color is </h2>
+        <span class='code'>color: </span>
+        <span class="codeval" id='col'>rgb(156,256,156);</span>
+        <h2>?</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="lifes">
+        <div id="msg"></div>
+        <div id="life-1">❤️ ❤️ ❤️</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="color" id='c1'></div>
+      <div class="color" id='c2'></div>
+      <div class="color" id='c3'></div>
+      <div class="color" id='c7' jk-hidden></div>
+    </div>
+    <div class="row">
+      <div class="color" id='c4'></div>
+      <div class="color" id='c5'></div>
+      <div class="color" id='c6'></div>
+      <div class="color" id='c8' jk-hidden></div>
+    </div>
+    
+    <footer>
+      <line></line>
+      <span>
+      by Jasraj Singh Bhatia, 1st year Undergraduate, IIT Delhi
 
-      function getRandomColor() {
-        var letters = "0123456789ABCDEF";
-        var color = "#";
-        for (var i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-      }
+      </span>
+    </footer>
+  </div>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;700&display=swap" rel="stylesheet" />
+</body>
 
-      function newGame() {
-        t1.style.background = getRandomColor();
-        t2.style.background = getRandomColor();
-
-        x = Math.floor(Math.random() * 2 + 1);
-
-        if (x == 1) correctColor = t1.style.background;
-        else correctColor = t2.style.background;
-        /* console.log(x);
-        console.log(correctColor); */
-
-        document.getElementById("header-clue").innerHTML = correctColor;
-      }
-
-      t1.addEventListener("click", function () {
-        if (t1.style.background == correctColor) {
-          t2.style.background = correctColor;
-          document.getElementById("header").style.background = correctColor;
-        } else {
-          t1.style.background = "black";
-        }
-      });
-
-      t2.addEventListener("click", function () {
-        if (t2.style.background == correctColor) {
-          t1.style.background = correctColor;
-          document.getElementById("header").style.background = correctColor;
-        } else {
-          t2.style.background = "black";
-        }
-      });
-    </script>
-  </body>
 </html>
